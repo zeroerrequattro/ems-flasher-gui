@@ -58,12 +58,12 @@ class Flasher:
         def ok_handler(dlg,path):
             command = self.read01 + [str(path)]
             return self.callBash(command)
-
+        
         if(vars.GBSavePath != None):
             command = self.read01 + [str(vars.GBSavePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler)
+            dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler,'backup_bank-1.gb')
 
     def readBank02(self):
         def ok_handler(dlg,path):
@@ -74,7 +74,7 @@ class Flasher:
             command = self.read02 + [str(vars.GBSavePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler)
+            dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler,'backup_bank-2.gb')
 
     def readSRam(self):
         def ok_handler(dlg,path):
@@ -85,7 +85,7 @@ class Flasher:
             command = self.readSR + [str(vars.SRAMSavePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Save .sav file as...','*.sav',wx.SAVE,ok_handler)
+            dialog.file_dialog('Save .sav file as...','*.sav',wx.SAVE,ok_handler,'backup.sav')
 
     def writeBank01(self):
         def ok_handler(dlg,path):
