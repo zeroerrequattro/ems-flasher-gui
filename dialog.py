@@ -28,12 +28,14 @@ def file_dialog(message, wildcard, style, ok_handler, default_file=''):
     dlg = wx.FileDialog(
         None, message, last_opened_dir, default_file, wildcard, style)
 
+    res = None
+
     try:
         if dlg.ShowModal() == wx.ID_OK:
             last_opened_dir = dlg.GetDirectory()
 
             path = os.path.join(dlg.GetDirectory(), dlg.GetFilename())
-            ok_handler(dlg, path)
+            res = ok_handler(dlg, path)
     finally:
         dlg.Destroy()
 
@@ -42,3 +44,5 @@ def file_dialog(message, wildcard, style, ok_handler, default_file=''):
 
     with open(last_opened_dir_file, 'w+') as fp:
         fp.write(last_opened_dir)
+
+    return res

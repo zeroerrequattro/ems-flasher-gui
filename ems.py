@@ -63,7 +63,7 @@ class Flasher:
             command = self.read01 + [str(vars.GBSavePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler,'backup_bank-1.gb')
+            return dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler,'backup_bank-1.gb')
 
     def readBank02(self):
         def ok_handler(dlg,path):
@@ -74,7 +74,7 @@ class Flasher:
             command = self.read02 + [str(vars.GBSavePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler,'backup_bank-2.gb')
+            return dialog.file_dialog('Save ROM as...','*.gb',wx.SAVE,ok_handler,'backup_bank-2.gb')
 
     def readSRam(self):
         def ok_handler(dlg,path):
@@ -85,7 +85,7 @@ class Flasher:
             command = self.readSR + [str(vars.SRAMSavePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Save .sav file as...','*.sav',wx.SAVE,ok_handler,'backup.sav')
+            return dialog.file_dialog('Save .sav file as...','*.sav',wx.SAVE,ok_handler,'backup.sav')
 
     def writeBank01(self):
         def ok_handler(dlg,path):
@@ -96,7 +96,7 @@ class Flasher:
             command = self.write01 + [str(vars.GBWritePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Load ROM file','*.gb',wx.OPEN,ok_handler)
+            return dialog.file_dialog('Load ROM file','*.gb',wx.OPEN,ok_handler)
 
     def writeBank02(self):
         def ok_handler(dlg,path):
@@ -107,7 +107,7 @@ class Flasher:
             command = self.write02 + [str(vars.GBWritePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Load ROM file','*.gb',wx.OPEN,ok_handler)
+            return dialog.file_dialog('Load ROM file','*.gb',wx.OPEN,ok_handler)
 
     def writeSRam(self):
         def ok_handler(dlg,path):
@@ -118,4 +118,4 @@ class Flasher:
             command = self.writeSR + [str(vars.SRAMWritePath)]
             return self.callBash(command)
         else:
-            dialog.file_dialog('Load .sav file','*.sav',wx.OPEN,ok_handler)
+            return dialog.file_dialog('Load .sav file','*.sav',wx.OPEN,ok_handler)
