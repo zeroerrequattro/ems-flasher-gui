@@ -61,5 +61,10 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-#MAC crappy .DS_Store
+# MAC crappy .DS_Store
 .DS_Store
+
+# ems flasher stuff
+ems-flasher
+*.gb
+*.sav

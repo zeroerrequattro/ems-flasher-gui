@@ -21,15 +21,18 @@ class EmsGui(wx.Frame):
         self.textPanel     = wx.ScrolledWindow(self.innerPanel, -1)
         
         self.resultText    = wx.StaticText(self.textPanel)
-        self.forceCheckbox = wx.CheckBox(self.buttonPanel, label='Force Write')
         
-        self.buttonReadBank01 = wx.Button(self.buttonPanel, label='Save ROM - Bank 01')
-        self.buttonReadBank02 = wx.Button(self.buttonPanel, label='Save ROM - Bank 02')
-        self.buttonReadSRam   = wx.Button(self.buttonPanel, label='Save SRAM')
+        self.buttonDeleteBank01 = wx.Button(self.buttonPanel, label='Delete Bank 01')
+        self.buttonDeleteBank02 = wx.Button(self.buttonPanel, label='Delete Bank 02')
+        self.buttonFormatCart   = wx.Button(self.buttonPanel, label='Format Cart')
         
-        self.buttonWriteBank01 = wx.Button(self.buttonPanel, label='Write on Bank 01')
-        self.buttonWriteBank02 = wx.Button(self.buttonPanel, label='Write on Bank 02')
-        self.buttonWriteSRam   = wx.Button(self.buttonPanel, label='Write SRAM')
+        self.buttonReadBank01   = wx.Button(self.buttonPanel, label='Save ROM - Bank 01')
+        self.buttonReadBank02   = wx.Button(self.buttonPanel, label='Save ROM - Bank 02')
+        self.buttonReadSRam     = wx.Button(self.buttonPanel, label='Save SRAM')
+        
+        self.buttonWriteBank01  = wx.Button(self.buttonPanel, label='Write on Bank 01')
+        self.buttonWriteBank02  = wx.Button(self.buttonPanel, label='Write on Bank 02')
+        self.buttonWriteSRam    = wx.Button(self.buttonPanel, label='Write SRAM')
         
         self.i = 0
         
@@ -64,7 +67,7 @@ class EmsGui(wx.Frame):
         _codeFont.SetPointSize(12)
         
         _H1Font = wx.SystemSettings_GetFont(wx.SYS_SYSTEM_FONT)
-        _H1Font.SetPointSize(20)
+        _H1Font.SetPointSize(16)
         
         # Set background colors of panels
         self.mainContainer.SetBackgroundColour(_red)
@@ -75,7 +78,20 @@ class EmsGui(wx.Frame):
         # button panel layout
         buttonBox = wx.BoxSizer(wx.VERTICAL)
         
-        readTitle = wx.StaticText(self.buttonPanel, label='Read Cart')
+        readTitle = wx.StaticText(self.buttonPanel, label='Delete Section')
+        readTitle.SetFont(_H1Font)
+        readTitle.SetForegroundColour(_gray)
+        buttonBox.Add(readTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
+        
+        formatBox = wx.BoxSizer(wx.HORIZONTAL)
+        formatBox.Add(self.buttonDeleteBank01, 1, wx.EXPAND|wx.LEFT, 10)
+        formatBox.Add(self.buttonDeleteBank02, 1, wx.EXPAND|wx.RIGHT|wx.LEFT, 10)
+        formatBox.Add(self.buttonFormatCart, 1, wx.EXPAND|wx.RIGHT, 10)
+        
+        buttonBox.Add(formatBox, 1, wx.EXPAND)
+        buttonBox.Add((-1, 10))
+        
+        readTitle = wx.StaticText(self.buttonPanel, label='Read Section')
         readTitle.SetFont(_H1Font)
         readTitle.SetForegroundColour(_gray)
         buttonBox.Add(readTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
@@ -88,7 +104,7 @@ class EmsGui(wx.Frame):
         buttonBox.Add(readBox, 1, wx.EXPAND)
         buttonBox.Add((-1, 10))
         
-        writeTitle = wx.StaticText(self.buttonPanel, label='Write Cart')
+        writeTitle = wx.StaticText(self.buttonPanel, label='Write Section')
         writeTitle.SetFont(_H1Font)
         writeTitle.SetForegroundColour(_gray)
         buttonBox.Add(writeTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
@@ -99,7 +115,6 @@ class EmsGui(wx.Frame):
         writeBox.Add(self.buttonWriteSRam, 1, wx.EXPAND|wx.RIGHT,10)
         
         buttonBox.Add(writeBox, 1, wx.EXPAND)
-        buttonBox.Add(self.forceCheckbox, 1, wx.ALIGN_LEFT|wx.LEFT, 10)
         buttonBox.Add((-1, 10))
         
         self.buttonPanel.SetSizer(buttonBox)
@@ -134,6 +149,10 @@ class EmsGui(wx.Frame):
         self.mainContainer.SetSizer(mainBox)
 
     def InitBind(self):
+        self.Bind(wx.EVT_BUTTON, self.deleteBank01Click, self.buttonDeleteBank01)
+        self.Bind(wx.EVT_BUTTON, self.deleteBank02Click, self.buttonDeleteBank02)
+        self.Bind(wx.EVT_BUTTON, self.formatCartClick, self.buttonFormatCart)
+        
         self.Bind(wx.EVT_BUTTON, self.readBank01Click, self.buttonReadBank01)
         self.Bind(wx.EVT_BUTTON, self.readBank02Click, self.buttonReadBank02)
         self.Bind(wx.EVT_BUTTON, self.readBankSRamClick, self.buttonReadSRam)
@@ -145,17 +164,26 @@ class EmsGui(wx.Frame):
     def InitCheck(self):
         checkEms = self.ems.checkEms()
         if(not checkEms):
-            self.writeAndScroll('Can\'t find ems-flasher. Is it in the same folder of this app?')
+            self.writeAndScroll('Can\'t find ems-flasher.\nIs it in the same folder of this app?')
         else:
-            self.writeAndScroll(str(self.ems.checkVersion()))
+            string = 'Flasher found: ' + str(self.ems.checkVersion())
+            self.writeAndScroll(string)
 
     def InitDropFile(self):
         dt = FileDrop(self.resultText)
         self.mainContainer.SetDropTarget(dt)
     
     # define button functions
-    def readBank01Click(self,e):
-        result = self.ems.readBank01()
+    def deleteBank01Click(self,e):
+        result = self.ems.deleteBank01()
+        self.writeAndScroll(result)
+
+    def deleteBank02Click(self,e):
+        result = self.ems.deleteBank02()
+        self.writeAndScroll(result)
+
+    def formatCartClick(self,e):
+        result = self.ems.formatCart()
         self.writeAndScroll(result)
 
     def readBank02Click(self,e):
@@ -167,27 +195,15 @@ class EmsGui(wx.Frame):
         self.writeAndScroll(result)
 
     def writeBank01Click(self,e):
-        result = ''
-        if(not self.forceCheckbox.IsChecked()):
-            result = self.ems.writeBank01()
-        else:
-            result = self.ems.forceWriteBank01()
+        result = self.ems.writeBank01()
         self.writeAndScroll(result)
 
     def writeBank02Click(self,e):
-        result = ''
-        if(not self.forceCheckbox.IsChecked()):
-            result = self.ems.writeBank02()
-        else:
-            result = self.ems.forceWriteBank02()
+        result = self.ems.writeBank02()
         self.writeAndScroll(result)
             
     def writeBankSRamClick(self,e):
-        result = ''
-        if(not self.forceCheckbox.IsChecked()):
-            result = self.ems.writeSRam()
-        else:
-            result = self.ems.forceWriteSRam()
+        result = self.ems.writeSRam()
         self.writeAndScroll(result)
 
     # Useful function, write on resultText panel and scroll to the bottom
