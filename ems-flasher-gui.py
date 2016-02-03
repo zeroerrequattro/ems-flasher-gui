@@ -186,6 +186,10 @@ class EmsGui(wx.Frame):
         result = self.ems.formatCart()
         self.writeAndScroll(result)
 
+    def readBank01Click(self,e):
+        result = self.ems.readBank01()
+        self.writeAndScroll(result)
+
     def readBank02Click(self,e):
         result = self.ems.readBank02()
         self.writeAndScroll(result)

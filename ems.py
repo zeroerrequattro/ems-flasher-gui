@@ -9,7 +9,7 @@ import vars
 class Flasher:
     def __init__(self):
         self.ems      = 'ems-flasher'
-        self.emsCmd   = './' + self.ems
+        self.emsCmd   = ['./' + self.ems,'--verbose']
         self.version  = ['--version']
         self.title    = ['--title']
         self.delete01 = ['--delete','BANK','1']
@@ -23,7 +23,7 @@ class Flasher:
         self.writeSR  = ['--write','--save']
 
     def callBash(self, command):
-        instruction = [self.emsCmd] + command
+        instruction = self.emsCmd + command
         if(self.checkEms()):
             try:
                 output = subprocess.check_output(instruction)
