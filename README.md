@@ -26,7 +26,7 @@ This code uses wxPython
 - In the ems-flasher-gui folder, run the installation script:
  ```bash
  python setup.py py2app
- ```<br />
+ ``` <br />
  In the `dist` folder you'll find the app.
 
 ### Usage
