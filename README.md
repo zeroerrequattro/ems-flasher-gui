@@ -10,7 +10,8 @@ A compiled version of [ems-flasher](https://github.com/mikeryan/ems-flasher) is 
 It also uses the Python package installed with Xcode.<br />
 So, before running all the packages installations, you need to have Xcode and the CLI Tools installed.
 
-This code uses wxPython
+This code uses wxPython to display the windows and the dialogs in this app.<br>
+It uses py2app to create the application on OSX.
 
 ### Installation & Build
 - Install [Homebrew](http://brew.sh/) and write this in Terminal:<br />
