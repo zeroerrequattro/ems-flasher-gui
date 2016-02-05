@@ -16,13 +16,13 @@ This code uses wxPython
 - Install [Homebrew](http://brew.sh/) and write this in Terminal:<br />
  ```bash
  brew install wxpython
- ```<br />
+ ``` <br />
  It will install the wxWidgets libraries and wxPython.
 - Install [py2app](https://pythonhosted.org/py2app/).
 - Download the repository by launching the git command:<br />
  ```bash
  git clone git@github.com:zeroerrequattro/ems-flasher-gui.git
- ```<br />
+ ``` <br />
 - In the ems-flasher-gui folder, run the installation script:
  ```bash
  python setup.py py2app
