@@ -164,7 +164,7 @@ class EmsGui(wx.Frame):
     def InitCheck(self):
         checkEms = self.ems.checkEms()
         if(not checkEms):
-            self.writeAndScroll('Can\'t find ems-flasher.\nIs it in the same folder of this app?')
+            self.writeAndScroll('Can\'t find ems-flasher.\nIs it in the same folder of this app?\n')
         else:
             string = 'Flasher found: ' + str(self.ems.checkVersion())
             self.writeAndScroll(string)
