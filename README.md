@@ -22,7 +22,7 @@ This code uses wxPython
 - Download the repository by launching the git command:<br />
  ```bash
  git clone git@github.com:zeroerrequattro/ems-flasher-gui.git
- ``` <br />
+ ```
 - In the ems-flasher-gui folder, run the installation script:<br />
  ```bash
  python setup.py py2app
