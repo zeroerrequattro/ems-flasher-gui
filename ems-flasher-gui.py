@@ -78,19 +78,6 @@ class EmsGui(wx.Frame):
         # button panel layout
         buttonBox = wx.BoxSizer(wx.VERTICAL)
         
-        readTitle = wx.StaticText(self.buttonPanel, label='Delete Section')
-        readTitle.SetFont(_H1Font)
-        readTitle.SetForegroundColour(_gray)
-        buttonBox.Add(readTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
-        
-        formatBox = wx.BoxSizer(wx.HORIZONTAL)
-        formatBox.Add(self.buttonDeleteBank01, 1, wx.EXPAND|wx.LEFT, 10)
-        formatBox.Add(self.buttonDeleteBank02, 1, wx.EXPAND|wx.RIGHT|wx.LEFT, 10)
-        formatBox.Add(self.buttonFormatCart, 1, wx.EXPAND|wx.RIGHT, 10)
-        
-        buttonBox.Add(formatBox, 1, wx.EXPAND)
-        buttonBox.Add((-1, 10))
-        
         readTitle = wx.StaticText(self.buttonPanel, label='Read Section')
         readTitle.SetFont(_H1Font)
         readTitle.SetForegroundColour(_gray)
@@ -115,6 +102,19 @@ class EmsGui(wx.Frame):
         writeBox.Add(self.buttonWriteSRam, 1, wx.EXPAND|wx.RIGHT,10)
         
         buttonBox.Add(writeBox, 1, wx.EXPAND)
+        buttonBox.Add((-1, 10))
+        
+        readTitle = wx.StaticText(self.buttonPanel, label='Delete Section')
+        readTitle.SetFont(_H1Font)
+        readTitle.SetForegroundColour(_gray)
+        buttonBox.Add(readTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
+        
+        formatBox = wx.BoxSizer(wx.HORIZONTAL)
+        formatBox.Add(self.buttonDeleteBank01, 1, wx.EXPAND|wx.LEFT, 10)
+        formatBox.Add(self.buttonDeleteBank02, 1, wx.EXPAND|wx.RIGHT|wx.LEFT, 10)
+        formatBox.Add(self.buttonFormatCart, 1, wx.EXPAND|wx.RIGHT, 10)
+        
+        buttonBox.Add(formatBox, 1, wx.EXPAND)
         buttonBox.Add((-1, 10))
         
         self.buttonPanel.SetSizer(buttonBox)
