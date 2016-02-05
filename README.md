@@ -23,7 +23,7 @@ This code uses wxPython
  ```bash
  git clone git@github.com:zeroerrequattro/ems-flasher-gui.git
  ``` <br />
-- In the ems-flasher-gui folder, run the installation script:
+- In the ems-flasher-gui folder, run the installation script:<br />
  ```bash
  python setup.py py2app
  ``` <br />
@@ -38,7 +38,7 @@ You can also drag and drop the files to automatically set the .gb/.sav file in o
 - On El Capitan (OSX 10.11.2), When you launch the py2app command it give a `error: [Errno 1] Operation not permitted` error. To resolve it, [follow these steps](http://stackoverflow.com/questions/33197412/py2app-operation-not-permitted).
 - The App "compiled" by py2app is awfully heavy (~70Mb) for what it does. 
 - The App will not recognize the position of ems-flasher. I'll find a way.
- to make it work without py2app, just launch the main script with Python:
+ to make it work without py2app, just launch the main script with Python:<br />
 ```bash
 python ems-flasher-gui.py
 ```
