@@ -52,6 +52,7 @@ You can also drag and drop the files to automatically set the .gb/.sav file in o
 
 ### To Do
 - Add multiple ROM writing on single bank.
+- Add the errors that ems-flasher throws.
 
 Maybe someday I'll get rid of ems-flasher too, having all included in a single software.
 
