@@ -16,17 +16,17 @@ This code uses wxPython
 - Install [Homebrew](http://brew.sh/) and write this in Terminal:<br />
  ```bash
  brew install wxpython
- ```
+ ```<br />
  It will install the wxWidgets libraries and wxPython.
 - Install [py2app](https://pythonhosted.org/py2app/).
 - Download the repository by launching the git command:<br />
  ```bash
  git clone git@github.com:zeroerrequattro/ems-flasher-gui.git
- ```
+ ```<br />
 - In the ems-flasher-gui folder, run the installation script:
  ```bash
  python setup.py py2app
- ```
+ ```<br />
  In the `dist` folder you'll find the app.
 
 ### Usage
@@ -39,9 +39,9 @@ You can also drag and drop the files to automatically set the .gb/.sav file in o
 - The App "compiled" by py2app is awfully heavy (~70Mb) for what it does. 
 - The App will not recognize the position of ems-flasher. I'll find a way.
  to make it work without py2app, just launch the main script with Python:
- ```bash
- python ems-flasher-gui.py
- ```
+```bash
+python ems-flasher-gui.py
+```
 - After pressing one of the button, the app seems to be stuck and not responding. Have patience, the software is working.
 - This GUI is meant to save/write one ROM from/to bank.
 
