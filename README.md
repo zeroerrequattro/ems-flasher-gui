@@ -34,14 +34,14 @@ It uses py2app to create the application on OSX.
  In the `dist` folder you'll find the app.
 
 ### Usage
+Before using this GUI you need to load the EMS Flasher. Click on the "Load EMS" button and you're good to go:)<br />
 Using this GUI is quite easy (well, the meaning of making a GUI is to make things easy).<br />
 Just push the buttons to read/write ROMs and .sav files into the cart.<br />
 You can also drag and drop the files to automatically set the .gb/.sav file in order to be written.
 
 ### Known Issues
 - On El Capitan (OSX 10.11.2), When you launch the py2app command it gives `error: [Errno 1] Operation not permitted`. To resolve it, [follow these steps](http://stackoverflow.com/questions/33197412/py2app-operation-not-permitted).
-- The App "compiled" by py2app is awfully heavy (~70Mb) for what it does. 
-- The App will not recognize the position of ems-flasher. I'll find a way.<br />
+- The App "compiled" by py2app is awfully heavy (~70Mb) for what it does.
  to make it work without py2app, just launch the main script with Python:<br />
  ```bash
  python ems-flasher-gui.py
