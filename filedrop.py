@@ -1,9 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import wx
-import dialog
-import vars
+import wx, dialog, vars
 
 class FileDrop(wx.FileDropTarget):
     def __init__(self, window):

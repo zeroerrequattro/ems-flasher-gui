@@ -1,15 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import wx
-import dialog
+import wx, dialog, strings
 from filedrop import FileDrop
 from ems import Flasher
 
 class EmsGui(wx.Frame):
 
     def __init__(self, parent, title):
-        super(EmsGui, self).__init__(parent, title=title, size=(900, 250))
+        super(EmsGui, self).__init__(parent, title=title, size=(500, 450))
         
         # Call the Flasher class
         self.ems = Flasher()
@@ -22,17 +21,21 @@ class EmsGui(wx.Frame):
         
         self.resultText    = wx.StaticText(self.textPanel)
         
-        self.buttonDeleteBank01 = wx.Button(self.buttonPanel, label='Delete Bank 01')
-        self.buttonDeleteBank02 = wx.Button(self.buttonPanel, label='Delete Bank 02')
-        self.buttonFormatCart   = wx.Button(self.buttonPanel, label='Format Cart')
+        self.buttonLoadEms      = wx.Button(self.buttonPanel, label=strings.loadEms)
+        self.buttonCheckVersion = wx.Button(self.buttonPanel, label=strings.emsVer)
+        self.buttonCheckCart    = wx.Button(self.buttonPanel, label=strings.chkCart)
         
-        self.buttonReadBank01   = wx.Button(self.buttonPanel, label='Save ROM - Bank 01')
-        self.buttonReadBank02   = wx.Button(self.buttonPanel, label='Save ROM - Bank 02')
-        self.buttonReadSRam     = wx.Button(self.buttonPanel, label='Save SRAM')
+        self.buttonReadBank01   = wx.Button(self.buttonPanel, label=strings.save01)
+        self.buttonReadBank02   = wx.Button(self.buttonPanel, label=strings.save02)
+        self.buttonReadSRam     = wx.Button(self.buttonPanel, label=strings.saveSR)
         
-        self.buttonWriteBank01  = wx.Button(self.buttonPanel, label='Write on Bank 01')
-        self.buttonWriteBank02  = wx.Button(self.buttonPanel, label='Write on Bank 02')
-        self.buttonWriteSRam    = wx.Button(self.buttonPanel, label='Write SRAM')
+        self.buttonWriteBank01  = wx.Button(self.buttonPanel, label=strings.write01)
+        self.buttonWriteBank02  = wx.Button(self.buttonPanel, label=strings.write02)
+        self.buttonWriteSRam    = wx.Button(self.buttonPanel, label=strings.writeSR)
+        
+        self.buttonDeleteBank01 = wx.Button(self.buttonPanel, label=strings.del01)
+        self.buttonDeleteBank02 = wx.Button(self.buttonPanel, label=strings.del02)
+        self.buttonFormatCart   = wx.Button(self.buttonPanel, label=strings.format)
         
         self.i = 0
         
@@ -77,41 +80,55 @@ class EmsGui(wx.Frame):
         
         # button panel layout
         buttonBox = wx.BoxSizer(wx.VERTICAL)
+        buttonBox.Add((-1, 10))
         
-        readTitle = wx.StaticText(self.buttonPanel, label='Read Section')
+        emsTitle = wx.StaticText(self.buttonPanel, label=strings.ems)
+        emsTitle.SetFont(_H1Font)
+        emsTitle.SetForegroundColour(_gray)
+        
+        emsBox = wx.BoxSizer(wx.HORIZONTAL)
+        emsBox.Add(emsTitle, 1, wx.EXPAND|wx.LEFT, 10)
+        emsBox.Add(self.buttonLoadEms, 1, wx.EXPAND|wx.RIGHT, 10)
+        emsBox.Add(self.buttonCheckVersion, 1, wx.EXPAND|wx.RIGHT, 10)
+        emsBox.Add(self.buttonCheckCart, 1, wx.EXPAND|wx.RIGHT, 10)
+        
+        buttonBox.Add(emsBox, 1, wx.EXPAND)
+        buttonBox.Add((-1, 5))
+        
+        readTitle = wx.StaticText(self.buttonPanel, label=strings.read)
         readTitle.SetFont(_H1Font)
         readTitle.SetForegroundColour(_gray)
-        buttonBox.Add(readTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
         
         readBox = wx.BoxSizer(wx.HORIZONTAL)
-        readBox.Add(self.buttonReadBank01, 1, wx.EXPAND|wx.LEFT, 10)
-        readBox.Add(self.buttonReadBank02, 1, wx.EXPAND|wx.RIGHT|wx.LEFT, 10)
+        readBox.Add(readTitle, 1, wx.EXPAND|wx.LEFT, 10)
+        readBox.Add(self.buttonReadBank01, 1, wx.EXPAND|wx.RIGHT, 10)
+        readBox.Add(self.buttonReadBank02, 1, wx.EXPAND|wx.RIGHT, 10)
         readBox.Add(self.buttonReadSRam, 1, wx.EXPAND|wx.RIGHT, 10)
         
         buttonBox.Add(readBox, 1, wx.EXPAND)
-        buttonBox.Add((-1, 10))
+        buttonBox.Add((-1, 5))
         
-        writeTitle = wx.StaticText(self.buttonPanel, label='Write Section')
+        writeTitle = wx.StaticText(self.buttonPanel, label=strings.write)
         writeTitle.SetFont(_H1Font)
         writeTitle.SetForegroundColour(_gray)
-        buttonBox.Add(writeTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
         
         writeBox = wx.BoxSizer(wx.HORIZONTAL)
-        writeBox.Add(self.buttonWriteBank01, 1, wx.EXPAND|wx.LEFT, 10)
-        writeBox.Add(self.buttonWriteBank02, 1, wx.EXPAND|wx.RIGHT|wx.LEFT, 10)
+        writeBox.Add(writeTitle, 1, wx.EXPAND|wx.LEFT, 10)
+        writeBox.Add(self.buttonWriteBank01, 1, wx.EXPAND|wx.RIGHT, 10)
+        writeBox.Add(self.buttonWriteBank02, 1, wx.EXPAND|wx.RIGHT, 10)
         writeBox.Add(self.buttonWriteSRam, 1, wx.EXPAND|wx.RIGHT,10)
         
         buttonBox.Add(writeBox, 1, wx.EXPAND)
-        buttonBox.Add((-1, 10))
+        buttonBox.Add((-1, 5))
         
-        readTitle = wx.StaticText(self.buttonPanel, label='Delete Section')
-        readTitle.SetFont(_H1Font)
-        readTitle.SetForegroundColour(_gray)
-        buttonBox.Add(readTitle, 1, wx.EXPAND|wx.LEFT|wx.TOP, 10)
+        deleteTitle = wx.StaticText(self.buttonPanel, label=strings.delete)
+        deleteTitle.SetFont(_H1Font)
+        deleteTitle.SetForegroundColour(_gray)
         
         formatBox = wx.BoxSizer(wx.HORIZONTAL)
-        formatBox.Add(self.buttonDeleteBank01, 1, wx.EXPAND|wx.LEFT, 10)
-        formatBox.Add(self.buttonDeleteBank02, 1, wx.EXPAND|wx.RIGHT|wx.LEFT, 10)
+        formatBox.Add(deleteTitle, 1, wx.EXPAND|wx.LEFT, 10)
+        formatBox.Add(self.buttonDeleteBank01, 1, wx.EXPAND|wx.RIGHT, 10)
+        formatBox.Add(self.buttonDeleteBank02, 1, wx.EXPAND|wx.RIGHT, 10)
         formatBox.Add(self.buttonFormatCart, 1, wx.EXPAND|wx.RIGHT, 10)
         
         buttonBox.Add(formatBox, 1, wx.EXPAND)
@@ -135,20 +152,24 @@ class EmsGui(wx.Frame):
         self.textPanel.SetSizer(textBox)
         
         # Set the inner box and insert the panels
-        innerBox = wx.BoxSizer(wx.HORIZONTAL)
+        innerBox = wx.BoxSizer(wx.VERTICAL)
+        innerBox.Add(self.textPanel, 3, wx.EXPAND|wx.LEFT,7)
         innerBox.Add(self.buttonPanel, 1, wx.EXPAND|wx.LEFT, 7)
-        innerBox.Add(self.textPanel, 1, wx.EXPAND)
         
         # Include the inner box in the inner panel
         self.innerPanel.SetSizer(innerBox)
         
-        mainBox = wx.BoxSizer(wx.HORIZONTAL)
+        mainBox = wx.BoxSizer(wx.VERTICAL)
         mainBox.Add(self.innerPanel, 1, wx.EXPAND | wx.LEFT, 7)
         
         # Include the main box in the main container
         self.mainContainer.SetSizer(mainBox)
 
     def InitBind(self):
+        self.Bind(wx.EVT_BUTTON, self.loadEmsClick, self.buttonLoadEms)
+        self.Bind(wx.EVT_BUTTON, self.checkVersionClick, self.buttonCheckVersion)
+        self.Bind(wx.EVT_BUTTON, self.checkCartClick, self.buttonCheckCart)
+        
         self.Bind(wx.EVT_BUTTON, self.deleteBank01Click, self.buttonDeleteBank01)
         self.Bind(wx.EVT_BUTTON, self.deleteBank02Click, self.buttonDeleteBank02)
         self.Bind(wx.EVT_BUTTON, self.formatCartClick, self.buttonFormatCart)
@@ -162,18 +183,25 @@ class EmsGui(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.writeBankSRamClick, self.buttonWriteSRam)
 
     def InitCheck(self):
-        checkEms = self.ems.checkEms()
-        if(not checkEms):
-            self.writeAndScroll('Can\'t find ems-flasher.\nIs it in the same folder of this app?\n')
-        else:
-            string = 'Flasher found: ' + str(self.ems.checkVersion())
-            self.writeAndScroll(string)
+        self.writeAndScroll(strings.welcome)
 
     def InitDropFile(self):
         dt = FileDrop(self.resultText)
         self.mainContainer.SetDropTarget(dt)
     
     # define button functions
+    def loadEmsClick(self,e):
+        result = self.ems.loadEms()
+        self.writeAndScroll(result)
+
+    def checkVersionClick(self,e):
+        result = self.ems.checkVersion()
+        self.writeAndScroll(result)
+
+    def checkCartClick(self,e):
+        result = self.ems.checkCart()
+        self.writeAndScroll(result)
+
     def deleteBank01Click(self,e):
         result = self.ems.deleteBank01()
         self.writeAndScroll(result)
@@ -228,5 +256,5 @@ class EmsGui(wx.Frame):
             
 if __name__ == '__main__':
     app = wx.App()
-    EmsGui(None, title='EMS Flasher GUI')
+    EmsGui(None, title=strings.title)
     app.MainLoop()

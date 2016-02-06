@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import dialog
-import appdirs
+import dialog, appdirs
 
 _dirs = appdirs.AppDirs("ems-flasher_gui", "0r4")
 
@@ -11,6 +10,7 @@ DATA_DIR       = _dirs.user_data_dir
 CACHE_DIR      = _dirs.user_cache_dir
 LOG_DIR        = _dirs.user_log_dir
 
+emsPath        = None
 GBSavePath     = None
 SRAMSavePath   = None
 GBWritePath    = None

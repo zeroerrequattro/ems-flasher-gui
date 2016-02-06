@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
-import os
-import wx
-import vars
+import os, wx, vars
 
 def popup_dialog(caption, msg, parent, exception=None):
     print(msg)
