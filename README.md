@@ -13,6 +13,10 @@ So, before running all the packages installations, you need to have Xcode and th
 This code uses wxPython to display the windows and the dialogs in this app.<br>
 It uses py2app to create the application on OSX.
 
+### Download
+If you just want to get the app, [Download it here](http://labs.biggiogero.net/ems/ems-flasher-gui.zip).
+It has also a compiled ems-flasher included.
+
 ### Installation & Build
 - Install [Homebrew](http://brew.sh/) and write this in Terminal:<br />
  ```bash
@@ -41,7 +45,7 @@ You can also drag and drop the files to automatically set the .gb/.sav file in o
 
 ### Known Issues
 - On El Capitan (OSX 10.11.2), When you launch the py2app command it gives `error: [Errno 1] Operation not permitted`. To resolve it, [follow these steps](http://stackoverflow.com/questions/33197412/py2app-operation-not-permitted).
-- The App "compiled" by py2app is awfully heavy (~70Mb) for what it does.
+- The packaged App is awfully heavy (~70Mb) for what it does.
  to make it work without py2app, just launch the main script with Python:<br />
  ```bash
  python ems-flasher-gui.py
