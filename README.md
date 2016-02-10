@@ -13,8 +13,11 @@ So, before running all the packages installations, you need to have Xcode and th
 This code uses wxPython to display the windows and the dialogs in this app.<br>
 It uses py2app to create the application on OSX.
 
+To make ems-flasher works, you need to have [libusb installed](http://libusb.info/).<br>
+For a precompiled libusb package, [you can get it there](http://www.ellert.se/twain-sane/).
+
 ### Download
-If you just want to get the app, [Download it here](http://labs.biggiogero.net/ems/ems-flasher-gui.zip).
+If you just want to get the app, [Download it here](http://labs.biggiogero.net/ems/ems-flasher-gui.zip).<br>
 It has also a compiled ems-flasher included.
 
 ### Installation & Build
@@ -51,6 +54,7 @@ You can also drag and drop the files to automatically set the .gb/.sav file in o
  python ems-flasher-gui.py
  ```
  
+- The Packaged app in the download URL doesn't work on OSX versions prior to 10.11, it puts an error.
 - After pressing one of the button, the app seems to be stuck and not responding. Have patience, the software is working.
 - This GUI is meant to save/write one ROM from/to bank.
 
