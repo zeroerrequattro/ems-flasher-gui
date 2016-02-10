@@ -14,6 +14,10 @@ This code uses wxPython to display the windows and the dialogs in this app.<br>
 It uses py2app to create the application on OSX.
 
 To make ems-flasher works, you need to have [libusb installed](http://libusb.info/).<br>
+You can install it via [Homebrew](http://brew.sh/):
+```bash
+brew install libusb
+```
 For a precompiled libusb package, [you can get it there](http://www.ellert.se/twain-sane/).
 
 ### Download
@@ -21,7 +25,7 @@ If you just want to get the app, [Download it here](http://labs.biggiogero.net/e
 It has also a compiled ems-flasher included.
 
 ### Installation & Build
-- Install [Homebrew](http://brew.sh/) and write this in Terminal:<br />
+- With Homewbrew installed, write this in Terminal:<br />
  ```bash
  brew install wxpython
  ```
