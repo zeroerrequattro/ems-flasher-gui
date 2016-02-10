@@ -12,7 +12,11 @@ DATA_FILES = []
 OPTIONS = {
     'argv_emulation': True,
     'iconfile':'emsgui.icns',
-    'plist': {'CFBundleShortVersionString':'0.1.0'}
+    'plist': {
+        'CFBundleShortVersionString':'0.1.0',
+        'LSMinimumSystemVersion':'10.9',
+        'NSHumanReadableCopyright':'Copyright © 2016 Daniele Biggiogero. Software released under MIT License'
+    }
 }
 
 setup(
